@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LawyerSignupPage.css';
 
@@ -23,6 +23,7 @@ const LawyerSignupPage = () => {
   const [avatar, setAvatar] = useState(null);
   const fileInputRef = useRef(null);
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -177,6 +178,13 @@ const LawyerSignupPage = () => {
 
   return (
     <div className="lawyer-signup-container">
+      <button 
+        className="go-back-button" 
+        onClick={() => navigate('/')}
+        style={{ position: 'absolute', top: '10px', right: '10px' }}
+      >
+        Go Back
+      </button>
       <div className="lawyer-signup-form-container">
         <h1 className="lawyer-signup-title">Join JustHire as a Lawyer</h1>
         <p className="lawyer-signup-subtitle">Create your professional profile</p>
@@ -201,7 +209,7 @@ const LawyerSignupPage = () => {
               className="file-input"
             />
           </div>
-          <p className="avatar-help-text">Click to upload your professional photo</p>
+          <p className="avatar-help-text">Click to upload your professional photo... Feature Not Released yet</p>
         </div>
 
         <form className="lawyer-signup-form" onSubmit={handleSubmit} noValidate>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import axios from 'axios';
 
@@ -19,6 +19,7 @@ const SignUpPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -132,6 +133,13 @@ const SignUpPage = () => {
 
   return (
     <div className="signup-container">
+      <button 
+        className="go-back-button" 
+        onClick={() => navigate('/')}
+        style={{ position: 'absolute', top: '10px', right: '10px' }}
+      >
+        Go Back
+      </button>
       <div className="signup-form-container">
         <h1 className="signup-title">Create Your Account</h1>
         <p className="signup-subtitle">Join JustHire to find legal help</p>
@@ -156,7 +164,7 @@ const SignUpPage = () => {
               className="file-input"
             />
           </div>
-          <p className="avatar-help-text">Click to upload your profile photo</p>
+          <p className="avatar-help-text">Click to upload your profile photo... Feature not realesed yet</p>
         </div>
 
         <form className="signup-form" onSubmit={handleSubmit} noValidate>

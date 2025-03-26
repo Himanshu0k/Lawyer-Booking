@@ -232,6 +232,23 @@
   transform: none;
 }
 
+/* Go Back to Landing Page button styling */
+.go-back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.go-back-button:hover {
+  background-color: #0056b3;
+}
+
 /* Footer styling */
 .signup-footer {
   margin-top: 30px;

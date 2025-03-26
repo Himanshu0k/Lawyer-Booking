@@ -84,15 +84,16 @@ const LawyerDashboard = () => {
               lawyer.name.charAt(0).toUpperCase()
             )}
           </div>
-          {/* <div className="profile-info">
-            <span><strong>Email:</strong> {lawyer.email}</span>
-            <span><strong>Phone:</strong> {lawyer.phoneNumber}</span>
-            <span><strong>Date of Birth:</strong> {new Date(lawyer.dob).toLocaleDateString()}</span>
-            <span><strong>Address:</strong> {lawyer.address}</span>
-            <span><strong>Specialization:</strong> {lawyer.specialization}</span>
-            <span><strong>Experience:</strong> {lawyer.experience} years</span>
-            <span><strong>Consultation Fees:</strong> ₹{lawyer.fees}</span>
-          </div> */}
+          <button
+            className="logout-btn"
+            onClick={() => {
+              alert("You have been successfully logged out");
+              localStorage.removeItem("lawyerToken");
+              navigate("/");
+            }}
+          >
+            Log Out
+          </button>
         </div>
       </header>
 

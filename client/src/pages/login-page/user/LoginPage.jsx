@@ -76,6 +76,13 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
+      <button 
+        className="go-back-button" 
+        onClick={() => navigate('/')}
+        style={{ position: 'absolute', top: '10px', right: '10px' }}
+      >
+        Go Back
+      </button>
       <div className="login-form-container">
         <h1 className="login-title">Log In</h1>
         <p className="login-subtitle">Enter your credentials to access your account</p>

@@ -363,3 +363,18 @@
    color: #7f8c8d;
    font-size: 0.9rem;
  }
+
+ .logout-btn {
+   background-color: #e74c3c;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: 500;
+   transition: background-color 0.2s;
+ }
+
+ .logout-btn:hover {
+   background-color: #c0392b;
+ }

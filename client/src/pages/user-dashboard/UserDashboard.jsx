@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaCalendarAlt, FaUserTie, FaClipboardList } from "react-icons/fa"; // Import icons
+import { FaCalendarAlt, FaUserTie, FaClipboardList, FaSignOutAlt } from "react-icons/fa"; // Import icons
 import axios from "axios";
 import "./UserDashboard.css";
 
@@ -103,6 +103,12 @@ const UserDashboard = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    alert("You have been logged out successfully.");
+    navigate("/");
+  };
+
   if (loading) {
     return (
       <div className="user-dashboard loading-container">
@@ -130,7 +136,10 @@ const UserDashboard = () => {
             {userData?.name ? userData.name.charAt(0).toUpperCase() : "U"}
           </div>
           <div className="profile-info">
-            <span>{userData?.email || "user@example.com"}</span>
+            {/* <span>{userData?.email || "user@example.com"}</span> */}
+            <button className="logout-button" onClick={handleLogout}>
+              <FaSignOutAlt className="logout-icon" /> Logout
+            </button>
           </div>
         </div>
       </header>

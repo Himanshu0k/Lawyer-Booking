@@ -446,3 +446,25 @@
 .action-card:hover .action-icon {
   color: #0056b3; /* Keep hover effect consistent */
 }
+
+.logout-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logout-button:hover {
+  background-color: #e60000;
+}
+
+.logout-icon {
+  font-size: 1rem;
+}
