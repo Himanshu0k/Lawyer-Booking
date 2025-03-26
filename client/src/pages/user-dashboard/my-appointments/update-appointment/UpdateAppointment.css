@@ -1,0 +1,54 @@
+.update-appointment {
+   max-width: 600px;
+   margin: 20px auto;
+   padding: 20px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   background-color: #f9f9f9;
+ }
+ 
+ .update-appointment h1 {
+   text-align: center;
+   color: #333;
+ }
+ 
+ .update-appointment form {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .update-appointment label {
+   margin-bottom: 8px;
+   font-weight: bold;
+   color: #555;
+ }
+ 
+ .update-appointment input[type="date"],
+ .update-appointment input[type="time"] {
+   padding: 10px;
+   margin-bottom: 20px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 16px;
+ }
+ 
+ .update-appointment button {
+   padding: 10px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+ }
+ 
+ .update-appointment button:hover {
+   background-color: #0056b3;
+ }
+ 
+ .error-message {
+   color: red;
+   text-align: center;
+   margin-top: 20px;
+ }

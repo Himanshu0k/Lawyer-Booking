@@ -1,0 +1,365 @@
+.lawyer-dashboard {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 2rem;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   color: #333;
+ }
+ 
+ .dashboard-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 2rem;
+   padding-bottom: 1rem;
+   border-bottom: 1px solid #eaeaea;
+ }
+ 
+ .dashboard-header h1 {
+   margin: 0;
+   font-size: 2rem;
+   color: #2c3e50;
+ }
+ 
+ .check-appointments-btn {
+   background-color: #3498db;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: 500;
+   transition: background-color 0.2s;
+ }
+ 
+ .check-appointments-btn:hover {
+   background-color: #2980b9;
+ }
+ 
+ .error-message {
+   background-color: #ffebee;
+   color: #c62828;
+   padding: 0.75rem;
+   border-radius: 4px;
+   margin-bottom: 1rem;
+ }
+ 
+ .success-message {
+   background-color: #e8f5e9;
+   color: #2e7d32;
+   padding: 0.75rem;
+   border-radius: 4px;
+   margin-bottom: 1rem;
+ }
+ 
+ .profile-update-section {
+   margin-bottom: 2rem;
+ }
+ 
+ .profile-form {
+   background-color: white;
+   border-radius: 10px;
+   padding: 2rem;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .profile-form .form-group {
+   margin-bottom: 1.5rem;
+ }
+ 
+ .profile-form label {
+   display: block;
+   margin-bottom: 0.5rem;
+   font-weight: 500;
+   color: #2c3e50;
+ }
+ 
+ .profile-form input {
+   width: 100%;
+   padding: 0.75rem;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+   font-size: 1rem;
+   transition: border-color 0.2s;
+ }
+ 
+ .profile-form input:focus {
+   outline: none;
+   border-color: #3498db;
+   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+ }
+ 
+ .update-profile-btn {
+   background-color: #3498db;
+   color: white;
+   border: none;
+   padding: 0.75rem 1.5rem;
+   border-radius: 4px;
+   font-weight: 600;
+   cursor: pointer;
+   width: 100%;
+   transition: background-color 0.2s;
+ }
+ 
+ .update-profile-btn:hover {
+   background-color: #2980b9;
+ }
+ 
+ .appointments-section {
+   margin-top: 2rem;
+ }
+ 
+ .appointments-section h2 {
+   margin-bottom: 1.5rem;
+   color: #2c3e50;
+ }
+ 
+ .appointments-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+   gap: 1.5rem;
+ }
+ 
+ .appointment-card {
+   background-color: white;
+   border-radius: 10px;
+   padding: 1.5rem;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+   transition: transform 0.3s ease;
+ }
+ 
+ .appointment-card:hover {
+   transform: translateY(-5px);
+ }
+ 
+ .appointment-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+ .status-badge {
+   padding: 0.25rem 0.5rem;
+   border-radius: 4px;
+   font-size: 0.9rem;
+   font-weight: 500;
+ }
+ 
+ .status-badge.pending {
+   background-color: #fff9c4;
+   color: #f57f17;
+ }
+ 
+ .status-badge.approved {
+   background-color: #c8e6c9;
+   color: #2e7d32;
+ }
+ 
+ .appointment-date,
+ .client-name {
+   margin: 0.5rem 0;
+   color: #7f8c8d;
+ }
+ 
+ .appointment-actions {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 1rem;
+ }
+ 
+ .approve-btn,
+ .delete-btn {
+   padding: 0.5rem 1rem;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: 500;
+   transition: background-color 0.2s;
+ }
+ 
+ .approve-btn {
+   background-color: #4caf50;
+   color: white;
+ }
+ 
+ .approve-btn:hover {
+   background-color: #388e3c;
+ }
+ 
+ .delete-btn {
+   background-color: #e74c3c;
+   color: white;
+ }
+ 
+ .delete-btn:hover {
+   background-color: #c0392b;
+ }
+ 
+ .no-appointments {
+   text-align: center;
+   padding: 2rem;
+   background-color: #f9f9f9;
+   border-radius: 10px;
+ }
+ 
+ .loading {
+   text-align: center;
+   padding: 2rem;
+   color: #757575;
+ }
+ 
+ .loading-spinner {
+   border: 4px solid rgba(0, 0, 0, 0.1);
+   border-radius: 50%;
+   border-top: 4px solid #3498db;
+   width: 40px;
+   height: 40px;
+   animation: spin 1s linear infinite;
+   margin-bottom: 1rem;
+ }
+ 
+ @keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
+ 
+ @media (max-width: 768px) {
+   .lawyer-dashboard {
+     padding: 1rem;
+   }
+   
+   .appointments-list {
+     grid-template-columns: 1fr;
+   }
+ }
+
+ .lawyer-welcome h1 {
+   margin: 0;
+   font-size: 2rem;
+   color: #2c3e50;
+ }
+
+ .lawyer-welcome p {
+   margin: 0.5rem 0 0;
+   color: #7f8c8d;
+   font-size: 1rem;
+ }
+
+ .lawyer-profile {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+ }
+
+ .profile-image {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: #3498db;
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5rem;
+   font-weight: bold;
+   overflow: hidden;
+ }
+
+ .profile-picture {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+
+ .profile-info span {
+   font-size: 0.9rem;
+   color: #7f8c8d;
+ }
+
+ .appointments-overview {
+   margin-top: 2rem;
+ }
+
+ .appointments-sections {
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+ }
+
+ .appointments-section {
+   flex: 1;
+   background-color: #f9f9f9;
+   border-radius: 10px;
+   padding: 1.5rem;
+   text-align: center;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s ease, background-color 0.3s ease;
+   cursor: pointer;
+ }
+
+ .appointments-section:hover {
+   transform: translateY(-5px);
+   background-color: #e9f5ff;
+ }
+
+ .section-icon {
+   font-size: 3rem;
+   margin-bottom: 1rem;
+   transition: color 0.3s ease;
+ }
+
+ .pending-appointments .section-icon {
+   color: #f39c12; /* Orange for pending appointments */
+ }
+
+ .approved-appointments .section-icon {
+   color: #2ecc71; /* Green for approved appointments */
+ }
+
+ .appointments-section h2 {
+   margin: 0 0 0.5rem;
+   color: #2c3e50;
+ }
+
+ .appointments-section p {
+   margin: 0;
+   color: #7f8c8d;
+   font-size: 0.9rem;
+ }
+
+ .all-appointments-section {
+   margin-top: 2rem;
+ }
+
+ .all-appointments {
+   flex: 1;
+   background-color: #f9f9f9;
+   border-radius: 10px;
+   padding: 1.5rem;
+   text-align: center;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s ease, background-color 0.3s ease;
+   cursor: pointer;
+ }
+
+ .all-appointments:hover {
+   transform: translateY(-5px);
+   background-color: #e9f5ff;
+ }
+
+ .all-appointments .section-icon {
+   font-size: 3rem;
+   margin-bottom: 1rem;
+   color: #3498db; /* Blue for all appointments */
+ }
+
+ .all-appointments h2 {
+   margin: 0 0 0.5rem;
+   color: #2c3e50;
+ }
+
+ .all-appointments p {
+   margin: 0;
+   color: #7f8c8d;
+   font-size: 0.9rem;
+ }
