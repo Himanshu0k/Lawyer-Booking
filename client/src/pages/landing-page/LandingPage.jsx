@@ -11,7 +11,7 @@ const LandingPage = () => {
           <p className="tagline">Legal expertise at your fingertips</p>
         </div>
         <nav className="nav-links">
-          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/login-user" className="nav-link">Login</Link>
           <Link to="/signup-user" className="signup-button">Sign Up</Link>
         </nav>
       </header>

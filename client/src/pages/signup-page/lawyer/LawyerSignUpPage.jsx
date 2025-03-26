@@ -385,13 +385,8 @@ const LawyerSignupPage = () => {
             {errors.fees && <span className="error-message">{errors.fees}</span>}
           </div>
 
-          <div className="form-group terms-checkbox">
-            <label className="checkbox-container">
-              <input type="checkbox" required />
-              <span className="checkbox-label">
-                I agree to the <a href="#terms">Terms of Service</a>, <a href="#privacy">Privacy Policy</a>, and <a href="#conduct">Code of Conduct</a>
-              </span>
-            </label>
+          <div className="form-group lawyer-option">
+            <p className="lawyer-option-text">Are you a User? <Link to="/signup-user" className="lawyer-link">Sign up as a User</Link></p>
           </div>
 
           {errors.form && <p className="error-message">{errors.form}</p>}
@@ -408,7 +403,7 @@ const LawyerSignupPage = () => {
 
         <div className="lawyer-signup-footer">
           <p>
-            Already have an account? <Link to="/login" className="login-link">Log in</Link>
+            Already have an account? <Link to="/login-lawyer" className="login-link">Log in</Link>
           </p>
         </div>
       </div>
