@@ -25,7 +25,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { swaggerOptions } from "./middlewares/swagger.js";
 import cors from "cors";
-import paymentRoutes from "./routes/paymentRoutes.js"; // Import payment routes
+// import paymentRoutes from "./routes/paymentRoutes.js"; // Import payment routes
 // import { validateAuthTokens } from "./middlewares/authMiddleware.js"; // Import middleware
 
 dotenv.config();
@@ -39,7 +39,7 @@ const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/", router);
-app.use("/payment", paymentRoutes); // Add this line to register payment routes
+// app.use("/payment", paymentRoutes); // Add this line to register payment routes
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

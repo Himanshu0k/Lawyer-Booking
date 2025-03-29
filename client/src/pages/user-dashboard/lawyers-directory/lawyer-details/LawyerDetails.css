@@ -1,0 +1,126 @@
+.lawyer-details {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.lawyer-details h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.lawyer-details p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.lawyer-details h2 {
+    margin-top: 30px;
+    font-size: 1.8rem;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.reviews-section {
+    margin-top: 20px;
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.review p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.review strong {
+    color: #000;
+}
+
+.review p:first-child {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.lawyer-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lawyer-details ul li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.lawyer-details ul li p {
+    margin: 5px 0;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button {
+    margin-left: auto;
+}
+
+.book-appointment {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.book-appointment-button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-appointment-button:hover {
+    background-color: #218838;
+}

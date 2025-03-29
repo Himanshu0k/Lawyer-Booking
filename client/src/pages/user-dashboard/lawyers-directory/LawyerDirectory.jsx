@@ -123,9 +123,9 @@ const LawyerDirectory = () => {
                 <p><strong>Specialization:</strong> {lawyer.specialization}</p>
                 <p><strong>Area:</strong> {lawyer.address}</p>
                 <p><strong>Experience:</strong> {lawyer.experience} years</p>
-                <p><strong>Fees:</strong> ${lawyer.fees}</p>
-                <button className="book-btn" onClick={() => navigate(`/book-appointment/${lawyer._id}`)}>
-                  Book Appointment
+                <p><strong>Fees:</strong> ₹{lawyer.fees}</p>
+                <button className="book-btn" onClick={() => navigate(`/lawyer-details/${lawyer._id}`)}>
+                  View Lawyer
                 </button>
               </div>
             </div>

@@ -250,16 +250,17 @@ const lawyerController = {
    */
   getLawyerById: async (req, res) => {
     try {
-      const { lawyerId } = req.body;
-      const lawyer = await Lawyer.findById(lawyerId);
-      if (!lawyer) {
-        return response.errorResponse(res, "Lawyer not found");
-      }
-      return response.successResponse(res, "Lawyer found successfully", lawyer);
+        const { lawyerId } = req.params; // Use params instead of body for ID
+        const lawyer = await Lawyer.findById(lawyerId); // Populate comments if needed
+        if (!lawyer) {
+            return response.errorResponse(res, "Lawyer not found");
+        }
+        return response.successResponse(res, "Lawyer found successfully", lawyer);
     } catch (error) {
-      return response.errorResponse(res, error.message);
+        console.error("Error fetching lawyer by ID:", error);
+        return response.errorResponse(res, "Failed to fetch lawyer by ID");
     }
-  },
+},
 
   /**
    * @swagger

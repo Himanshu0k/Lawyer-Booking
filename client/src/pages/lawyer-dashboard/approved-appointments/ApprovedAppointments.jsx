@@ -56,16 +56,16 @@ const ApprovedAppointments = () => {
         </button>
       </div>
       {appointments.length > 0 ? (
-        <ul>
+        <div className="appointment-cards">
           {appointments.map((appointment) => (
-            <li key={appointment._id}>
-              <p><strong>Client:</strong> {appointment.userId?.name || "N/A"}</p>
+            <div className="appointment-card" key={appointment._id}>
+              <h3>Client: {appointment.userId?.name || "N/A"}</h3>
               <p><strong>Date:</strong> {appointment.date}</p>
               <p><strong>Time:</strong> {appointment.time}</p>
               <p><strong>Booking Cause:</strong> {appointment.bookingCause || "N/A"}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No approved appointments.</p>
       )}

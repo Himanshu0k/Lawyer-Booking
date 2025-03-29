@@ -10,6 +10,8 @@ router.get("/getAppointments", verifyToken, appointmentController.getAppointment
 // Route to book a new appointment
 router.post("/bookAppointment", verifyToken, appointmentController.bookAppointment);
 
+router.post("/addReview/", verifyToken, appointmentController.addReview);
+
 // Route to update an existing appointment
 router.patch("/updateAppointment", verifyToken, appointmentController.updateAppointment);
 

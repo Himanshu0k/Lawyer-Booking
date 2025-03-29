@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
-import { FaEdit, FaTrashAlt } from "react-icons/fa"; // Import icons
+import { FaEdit, FaTrashAlt, FaStar } from "react-icons/fa"; // Import icons
 import "./ManageAppointments.css";
 
 const ManageAppointments = () => {
@@ -43,6 +43,10 @@ const ManageAppointments = () => {
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const isPastDate = (dateString) => {
+    return new Date(dateString) < new Date();
   };
 
   const handleDelete = async (appointmentId) => {
@@ -120,6 +124,15 @@ const ManageAppointments = () => {
                   title="Update Appointment"
                 >
                   <FaEdit />
+                </button>
+                <button
+                  className="icon-btn rate-btn"
+                  onClick={() => navigate(`/review-lawyer/${appointment.lawyerId?._id}`)}
+                  disabled={!(appointment.status === "approved" && isPastDate(appointment.date))}
+                  title="Rate Lawyer"
+                >
+                  <FaStar /> {/* Add star icon */}
+                  {/* Rate Lawyer */}
                 </button>
                 <button
                   className="icon-btn delete-btn"

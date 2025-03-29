@@ -62,6 +62,31 @@ const appointmentController = {
   },
 
   /**
+   * Delete an appointment
+   */
+  deleteAppointment: async (req, res) => {
+    try {
+      const { appointmentId } = req.body;
+
+      if (!appointmentId) {
+        return response.errorResponse(res, "Appointment ID is required");
+      }
+
+      const appointment = await Appointment.findById(appointmentId);
+      if (!appointment) {
+        return response.errorResponse(res, "Appointment not found");
+      }
+
+      await Appointment.findByIdAndDelete(appointmentId);
+
+      return response.successResponse(res, "Appointment deleted successfully");
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
+      return response.errorResponse(res, "Failed to delete appointment");
+    }
+  },
+
+  /**
    * @swagger
    * /lawyer/appointment/getAppointment:
    *   get:

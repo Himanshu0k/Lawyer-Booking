@@ -64,3 +64,90 @@ li p {
     transform: rotate(360deg);
   }
 }
+
+.flash-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.flash-card {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border: 1px solid #ccc;
+  border-radius: 15px; /* Slightly larger border radius */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  width: 380px; /* Increased width */
+  padding: 25px; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flash-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flash-card-content {
+  margin-bottom: 15px;
+}
+
+.flash-card-content p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.flash-card-content p strong {
+  color: #34495e;
+}
+
+.flash-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash-card-actions button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.flash-card-actions button:hover {
+  transform: scale(1.05);
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+}
+
+.view-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}

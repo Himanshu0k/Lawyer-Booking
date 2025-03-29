@@ -139,6 +139,49 @@ const userController = {
 
   /**
    * @swagger
+   * /user/getUserById/{id}:
+   *   get:
+   *     summary: Get user by ID
+   *     description: Retrieves user details by their ID.
+   *     tags:
+   *       - Users
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: User ID
+   *     responses:
+   *       200:
+   *         description: User fetched successfully
+   *       404:
+   *         description: User not found
+   */
+  getUserById: async (req, res) => {
+    try {
+        const userId = req.user?.id; // Extract user ID from authenticated request
+
+        if (!userId) {
+            return response.errorResponse(res, "User ID is required");
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return response.errorResponse(res, "User not found");
+        }
+        console.log("Name : " + user)
+
+        return response.successResponse(res, "User fetched successfully", user);
+    } catch (error) {
+        console.error("Error fetching user by ID:", error);
+        return response.errorResponse(res, "Internal Server Error");
+    }
+},
+
+
+  /**
+   * @swagger
    * /user/deleteUser:
    *   delete:
    *     summary: Delete a user

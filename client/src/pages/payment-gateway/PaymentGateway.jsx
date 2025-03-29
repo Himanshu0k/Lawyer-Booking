@@ -103,7 +103,7 @@ const PaymentGateway = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure token is stored properly
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`, // Ensure token is stored properly
           },
         }
       );

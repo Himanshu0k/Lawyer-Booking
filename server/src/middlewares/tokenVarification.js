@@ -7,12 +7,13 @@ const SECRET_KEY = process.env.SECRET_KEY || 'your_secret_key';
 
 // Generate Token
 const generateToken = (payload) => {
-   return jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
+   return jwt.sign(payload, SECRET_KEY, { expiresIn: '10h' });
 };
 
 // Middleware to Verify Token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log("Token : " + authHeader);
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return response.errorResponse(res, "Access denied, authorization header missing");

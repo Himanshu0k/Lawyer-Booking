@@ -10,4 +10,7 @@ router.post("/approveAppointment", verifyToken, appointmentController.approveApp
 // Route to get all appointments for a lawyer
 router.get("/getAppointments", verifyToken, appointmentController.getAllAppointments);
 
+// Route to delete an appointment
+router.delete("/deleteAppointment", verifyToken, appointmentController.deleteAppointment);
+
 export default router;

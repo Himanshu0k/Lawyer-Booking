@@ -36,7 +36,7 @@ const PendingAppointments = () => {
 
   const handleApprove = async (appointmentId) => {
     try {
-      const token = sessionStorage.getItem("token");
+      const token = sessionStorage.getItem("lawyerToken");
       await axios.post(
         "http://localhost:5000/lawyer/appointment/approveAppointment",
         { appointmentId },
@@ -61,7 +61,7 @@ const PendingAppointments = () => {
     if (!confirmDelete) return;
 
     try {
-      const token = sessionStorage.getItem("token");
+      const token = sessionStorage.getItem("lawyerToken");
       await axios.delete("http://localhost:5000/lawyer/appointment/deleteAppointment", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -100,14 +100,16 @@ const PendingAppointments = () => {
         </button>
       </div>
       {appointments.length > 0 ? (
-        <ul>
+        <div className="flash-card-container">
           {appointments.map((appointment) => (
-            <li key={appointment._id} className="appointment-card">
-              <p><strong>Client:</strong> {appointment.userId?.name || "N/A"}</p>
-              <p><strong>Date:</strong> {appointment.date}</p>
-              <p><strong>Time:</strong> {appointment.time}</p>
-              <p><strong>Booking Cause:</strong> {appointment.bookingCause || "N/A"}</p>
-              <div className="appointment-actions">
+            <div key={appointment._id} className="flash-card">
+              <div className="flash-card-content">
+                <p><strong>Client:</strong> {appointment.userId?.name || "N/A"}</p>
+                <p><strong>Date:</strong> {appointment.date}</p>
+                <p><strong>Time:</strong> {appointment.time}</p>
+                <p><strong>Booking Cause:</strong> {appointment.bookingCause || "N/A"}</p>
+              </div>
+              <div className="flash-card-actions">
                 <button
                   className="approve-btn"
                   onClick={() => handleApprove(appointment._id)}
@@ -127,9 +129,9 @@ const PendingAppointments = () => {
                   Delete
                 </button>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No pending appointments.</p>
       )}

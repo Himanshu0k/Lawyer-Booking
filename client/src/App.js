@@ -17,6 +17,8 @@ import PendingAppointments from "./pages/lawyer-dashboard/pending-appointments/P
 import ApprovedAppointments from "./pages/lawyer-dashboard/approved-appointments/ApprovedAppointments";
 import AllAppointments from "./pages/lawyer-dashboard/all-appointments/AllAppointments";
 import UpdateLawyerDetails from "./pages/lawyer-dashboard/update-lawyer-details/UpdateLawyerDetails";
+import ReviewLawyer from "./pages/user-dashboard/my-appointments/review-lawyer/ReviewLawyer";
+import LawyerDetails from "./pages/user-dashboard/lawyers-directory/lawyer-details/LawyerDetails";
 
 // Set up Axios interceptors to include tokens in the authorization header
 axios.interceptors.request.use(
@@ -60,6 +62,8 @@ const App = () => {
         <Route path="/approved-appointments" element={<ApprovedAppointments />} />
         <Route path="/all-appointments" element={<AllAppointments />} />
         <Route path="/update-lawyer-details" element={<UpdateLawyerDetails />} />
+        <Route path="/review-lawyer/:lawyerId" element={<ReviewLawyer />} />
+        <Route path="/lawyer-details/:lawyerId" element={<LawyerDetails />} />
       </Routes>
     </Router>
   );

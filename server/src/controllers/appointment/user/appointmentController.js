@@ -1,5 +1,6 @@
 import Appointment from "../../../models/appointment.js";
 import response from "../../../middlewares/response.js";
+import Review from "../../../models/review.js"; // Import the Review model
 
 const appointmentController = {
   /**
@@ -202,6 +203,78 @@ const appointmentController = {
     } catch (error) {
       console.error("Error fetching appointment:", error);
       return response.errorResponse(res, "Failed to fetch appointment");
+    }
+  },
+
+  /**
+   * @swagger
+   * /user/review/addReview:
+   *   post:
+   *     summary: Add a review for a lawyer
+   *     description: Allows a user to add a review for a lawyer after an appointment.
+   *     tags:
+   *       - Reviews
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               lawyerId:
+   *                 type: string
+   *               rating:
+   *                 type: number
+   *               comment:
+   *                 type: string
+   *     responses:
+   *       200:
+   *         description: Review added successfully
+   *       400:
+   *         description: Bad request due to invalid input
+   */
+  addReview: async (req, res) => {
+    try {
+      // const { lawyerId } = req.params; // Take lawyerId directly from the URL parameters
+      const { lawyerId, rating, comment } = req.body;
+      const userId = req.userId;
+
+      console.log(
+        "USer : " + userId,
+        "Lawyer : " + lawyerId,
+        "Rating : " + rating,
+        "Comment : " + comment
+      )
+
+      if (!lawyerId || !rating || !comment) {
+        return response.errorResponse(res, "All fields are required");
+      }
+
+      // Check if the user has an approved and past appointment with the lawyer
+      const pastAppointment = await Appointment.findOne({
+        userId,
+        lawyerId,
+        status: "approved",
+        date: { $lt: new Date() },
+      });
+
+      if (!pastAppointment) {
+        return response.errorResponse(res, "You can only review lawyers for past approved appointments");
+      }
+
+      // Create a new review
+      const newReview = new Review({
+        userId,
+        lawyerId,
+        rating,
+        comment,
+      });
+
+      await newReview.save();
+      return response.successResponse(res, "Review added successfully", newReview);
+    } catch (error) {
+      console.error("Error adding review:", error);
+      return response.errorResponse(res, "Failed to add review");
     }
   },
 };
