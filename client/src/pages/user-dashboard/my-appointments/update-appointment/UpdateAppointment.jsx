@@ -17,7 +17,7 @@ const UpdateAppointment = () => {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         const response = await axios.get(
           `http://localhost:5000/user/appointment/getAppointment/${appointmentId}`,
           {
@@ -52,7 +52,7 @@ const UpdateAppointment = () => {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       await axios.patch(
         "http://localhost:5000/user/appointment/updateAppointment",
         {

@@ -12,7 +12,7 @@ const PendingAppointments = () => {
   useEffect(() => {
     const fetchPendingAppointments = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("lawyerToken");
         const response = await axios.get("http://localhost:5000/lawyer/appointment/getAppointments", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ const PendingAppointments = () => {
 
   const handleApprove = async (appointmentId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       await axios.post(
         "http://localhost:5000/lawyer/appointment/approveAppointment",
         { appointmentId },
@@ -61,7 +61,7 @@ const PendingAppointments = () => {
     if (!confirmDelete) return;
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       await axios.delete("http://localhost:5000/lawyer/appointment/deleteAppointment", {
         headers: {
           Authorization: `Bearer ${token}`,

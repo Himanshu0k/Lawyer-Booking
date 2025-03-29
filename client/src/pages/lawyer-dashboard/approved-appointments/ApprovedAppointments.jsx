@@ -12,7 +12,7 @@ const ApprovedAppointments = () => {
   useEffect(() => {
     const fetchApprovedAppointments = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("lawyerToken");
         const response = await axios.get("http://localhost:5000/lawyer/appointment/getAppointments", {
           headers: {
             Authorization: `Bearer ${token}`,

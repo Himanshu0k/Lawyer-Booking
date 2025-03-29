@@ -49,22 +49,33 @@ export const verifyPayment = async (req, res) => {
 export const processPayment = async (req, res) => {
   try {
     const { mode, amount, appointmentDetails } = req.body;
-    console.log("Mode : " + mode)
-    console.log("amount : " + amount)
-    console.log("appointmentDetails : " + appointmentDetails)
 
+    console.log("Received Payment Request");
+    console.log("Mode:", mode);
+    console.log("Amount:", amount);
+    console.log("Appointment Details:", appointmentDetails);
 
     if (!mode || !amount || !appointmentDetails) {
-      return res.status(400).json({ success: false, message: "Payment mode, amount, and appointment details are required" });
+      console.error("Missing required fields");
+      return res.status(400).json({
+        success: false,
+        message: "Payment mode, amount, and appointment details are required",
+      });
     }
 
     // Simulate successful payment
     console.log(`Payment of ₹${amount} processed successfully via ${mode}`);
     console.log("Appointment Details:", appointmentDetails);
 
-    return res.status(200).json({ success: true, message: "Payment processed successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "Payment processed successfully",
+    });
   } catch (error) {
     console.error("Error processing payment:", error);
-    return res.status(500).json({ success: false, message: "Failed to process payment" });
+    return res.status(500).json({
+      success: false,
+      message: "Failed to process payment",
+    });
   }
 };

@@ -81,11 +81,11 @@ const PaymentGateway = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
-
+  
     if (!validatePaymentDetails()) {
       return;
     }
-
+  
     setLoading(true);
     try {
       const paymentData = {
@@ -94,16 +94,35 @@ const PaymentGateway = () => {
         amount: fees,
         appointmentDetails: appointmentData,
       };
-
-      const response = await axios.post("http://localhost:5000/payment/processPayment", paymentData);
-
+  
+      console.log("Sending payment data:", paymentData); // Debugging log
+  
+      const response = await axios.post(
+        "http://localhost:5000/payment/processPayment",
+        paymentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure token is stored properly
+          },
+        }
+      );
+  
       if (response.data.success) {
+        console.log("Payment Successful:", response.data);
+  
         // Save the appointment details after successful payment
         const saveAppointmentResponse = await axios.post(
           "http://localhost:5000/user/appointment/bookAppointment",
-          appointmentData
+          appointmentData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`, // Include auth header
+            },
+          }
         );
-
+  
         if (saveAppointmentResponse.data.success) {
           setSuccess("Payment successful! Your appointment is confirmed.");
           setTimeout(() => navigate("/user-dashboard"), 3000);
@@ -120,7 +139,7 @@ const PaymentGateway = () => {
       setLoading(false);
     }
   };
-
+  
   const renderPaymentFields = () => {
     switch (paymentMode) {
       case "creditCard":

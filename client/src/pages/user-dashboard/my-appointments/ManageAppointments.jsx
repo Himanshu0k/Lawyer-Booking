@@ -14,7 +14,7 @@ const ManageAppointments = () => {
     const fetchAppointments = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
 
         if (!token) {
           setError("User is not logged in");
@@ -50,7 +50,7 @@ const ManageAppointments = () => {
     if (!confirmDelete) return;
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       await axios.delete("http://localhost:5000/user/appointment/deleteAppointment", {
         headers: {
           Authorization: `Bearer ${token}`,

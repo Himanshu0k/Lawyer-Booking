@@ -60,7 +60,7 @@ const BookAppointment = () => {
     setIsSubmitting(true);
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (!token) {
         setError("User is not logged in");
         setIsSubmitting(false);

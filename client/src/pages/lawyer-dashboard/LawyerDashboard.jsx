@@ -24,7 +24,7 @@ const LawyerDashboard = () => {
     const fetchLawyerDetails = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem("lawyerToken");
+        const token = sessionStorage.getItem("lawyerToken");
 
         if (!token) {
           console.error("Authorization token is missing"); // Debugging log
@@ -88,7 +88,7 @@ const LawyerDashboard = () => {
             className="logout-btn"
             onClick={() => {
               alert("You have been successfully logged out");
-              localStorage.removeItem("lawyerToken");
+              sessionStorage.removeItem("lawyerToken");
               navigate("/");
             }}
           >

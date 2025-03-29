@@ -16,11 +16,11 @@ const UserDashboard = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
   
         if (!token) {
           setError("User is not logged in");
-          console.warn("No token found in localStorage"); // Debugging log
+          console.warn("No token found in sessionStorage"); // Debugging log
           return;
         }
   
@@ -76,7 +76,7 @@ const UserDashboard = () => {
 
   const refreshAppointments = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       const appointmentsResponse = await axios.get("http://localhost:5000/user/appointment/getAppointments", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ const UserDashboard = () => {
     const handleStorageChange = (event) => {
       if (event.key === "appointmentUpdated") {
         refreshAppointments();
-        localStorage.removeItem("appointmentUpdated"); // Clear the flag after refreshing
+        sessionStorage.removeItem("appointmentUpdated"); // Clear the flag after refreshing
       }
     };
 
@@ -104,7 +104,7 @@ const UserDashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     alert("You have been logged out successfully.");
     navigate("/");
   };

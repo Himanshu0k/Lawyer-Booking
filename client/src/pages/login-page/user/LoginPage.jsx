@@ -58,8 +58,8 @@ const LoginPage = () => {
         const { token } = response.data.data;
 
         // Store the user token in localStorage
-        localStorage.removeItem("lawyerToken");
-        localStorage.setItem("token", token);
+        sessionStorage.removeItem("lawyerToken");
+        sessionStorage.setItem("token", token);
 
         // localStorage.setItem("token", token);
         console.log("User token stored in localStorage:", token); // Debugging log
