@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './LawyerDetails.css';
+import axios from 'axios';
 
 const LawyerDetails = () => {
     const { lawyerId } = useParams(); 
@@ -41,38 +42,41 @@ const LawyerDetails = () => {
             .catch(error => console.error('Error fetching reviews:', error));
 
     }, [lawyerId]);
-
     useEffect(() => {
         const fetchUserNames = async () => {
             const uniqueUserIds = [...new Set(reviews.map(review => review.postedBy))];
-
+    
             const userDetails = await Promise.all(
                 uniqueUserIds.map(async (userId) => {
-                    if (!userId || userNames[userId]) return null;
-
+                    if (!userId || userNames[userId]) return null; // Skip if already fetched
+    
                     try {
-                        const response = await fetch(`http://localhost:5000/user/getUserById/${userId}`);
-                        const data = await response.json();
-                        return data.success ? { userId, name: data.user.name } : null;
+                        const response = await axios.get(`http://localhost:5000/user/getUserById/${userId}`);
+                        if (response.data.success) {
+                            return { userId, name: response.data.data.name };
+                        }
+                        return null;
                     } catch (error) {
                         console.error(`Error fetching user ${userId}:`, error);
                         return null;
                     }
                 })
             );
-
+    
+            // Reduce to a dictionary of userId -> name
             const userNameMap = userDetails.reduce((acc, user) => {
                 if (user) acc[user.userId] = user.name;
                 return acc;
             }, {});
-
+    
             setUserNames(prev => ({ ...prev, ...userNameMap }));
         };
-
+    
         if (reviews.length > 0) {
             fetchUserNames();
         }
     }, [reviews]);
+    
 
     const renderStars = (rating) => {
          const star = rating.split(" ")

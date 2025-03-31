@@ -160,7 +160,7 @@ const userController = {
    */
   getUserById: async (req, res) => {
     try {
-        const userId = req.user?.id; // Extract user ID from authenticated request
+        const { userId } = req.params; // Extract userId from request params
 
         if (!userId) {
             return response.errorResponse(res, "User ID is required");
@@ -170,7 +170,6 @@ const userController = {
         if (!user) {
             return response.errorResponse(res, "User not found");
         }
-        console.log("Name : " + user)
 
         return response.successResponse(res, "User fetched successfully", user);
     } catch (error) {

@@ -11,7 +11,7 @@ router.post('/addUser', userController.addUser);
 
 // router.post("/api/users/signup", userController.addUser);
 router.get('/getUser', verifyToken, userController.getUser);
-router.get('/getUserById/:id', userController.getUserById);
+router.get('/getUserById/:userId', userController.getUserById);
 router.delete('/deleteUser', verifyToken, verifyRole(["user"]), userController.deleteUser);
 router.patch('/updateUser', verifyToken, verifyRole(["user"]), userController.updateUser);
 

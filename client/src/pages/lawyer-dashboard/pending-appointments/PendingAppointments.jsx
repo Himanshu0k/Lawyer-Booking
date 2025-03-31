@@ -118,7 +118,7 @@ const PendingAppointments = () => {
                 </button>
                 <button
                   className="view-btn"
-                  onClick={() => navigate(`/appointment/${appointment._id}`)}
+                  onClick={() => navigate(`/view-appointment-details/${appointment._id}`)}
                 >
                   View
                 </button>
