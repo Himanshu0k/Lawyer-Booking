@@ -1,6 +1,7 @@
 import Appointment from "../../../models/appointment.js";
 import response from "../../../middlewares/response.js";
 import Review from "../../../models/review.js"; // Import the Review model
+import User from "../../../models/user.js";
 
 const appointmentController = {
   /**
@@ -235,48 +236,61 @@ const appointmentController = {
    */
   addReview: async (req, res) => {
     try {
-      // const { lawyerId } = req.params; // Take lawyerId directly from the URL parameters
-      const { lawyerId, rating, comment } = req.body;
-      const userId = req.userId;
+        const { lawyerId, rating, comment } = req.body;
+        const userId = req.userId;
 
-      console.log(
-        "USer : " + userId,
-        "Lawyer : " + lawyerId,
-        "Rating : " + rating,
-        "Comment : " + comment
-      )
+        // Fetch user details
+        const user = await User.findById(userId);
+        if (!user) {
+            return response.errorResponse(res, "User not found");
+        }
 
-      if (!lawyerId || !rating || !comment) {
-        return response.errorResponse(res, "All fields are required");
-      }
+        console.log(
+            "Name : " + user.name,
+            "User : " + userId,
+            "Lawyer : " + lawyerId,
+            "Rating : " + rating,
+            "Comment : " + comment
+        );
 
-      // Check if the user has an approved and past appointment with the lawyer
-      const pastAppointment = await Appointment.findOne({
-        userId,
-        lawyerId,
-        status: "approved",
-        date: { $lt: new Date() },
-      });
+        if (!lawyerId || !rating || !comment) {
+            return response.errorResponse(res, "All fields are required");
+        }
 
-      if (!pastAppointment) {
-        return response.errorResponse(res, "You can only review lawyers for past approved appointments");
-      }
+        // Check if the user has an approved and past appointment with the lawyer
+        const pastAppointment = await Appointment.findOne({
+            userId,
+            lawyerId,
+            status: "approved",
+            date: { $lt: new Date() },
+        });
 
-      // Create a new review
-      const newReview = new Review({
-        userId,
-        lawyerId,
-        rating,
-        comment,
-      });
+        if (!pastAppointment) {
+            return response.errorResponse(res, "You can only review lawyers for past approved appointments");
+        }
 
-      await newReview.save();
-      return response.successResponse(res, "Review added successfully", newReview);
+        // Use findOneAndUpdate to either update an existing review or create a new one
+        const updatedReview = await Review.findOneAndUpdate(
+            { userId, lawyerId },  // Search criteria
+            { 
+                userName: user.name,
+                rating,
+                comment
+            },  
+            { 
+                new: true,  // Return the updated document
+                upsert: true,  // Create a new review if none exists
+                runValidators: true  // Ensure validation rules are applied
+            }
+        );
+
+        return response.successResponse(res, "Review submitted successfully", updatedReview);
     } catch (error) {
-      console.error("Error adding review:", error);
-      return response.errorResponse(res, "Failed to add review");
+        console.error("Error adding/updating review:", error);
+        return response.errorResponse(res, "Failed to submit review");
     }
-  },
+},
+
 };
 
 export default appointmentController;

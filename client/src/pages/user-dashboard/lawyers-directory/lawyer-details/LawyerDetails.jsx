@@ -42,42 +42,7 @@ const LawyerDetails = () => {
             .catch(error => console.error('Error fetching reviews:', error));
 
     }, [lawyerId]);
-    useEffect(() => {
-        const fetchUserNames = async () => {
-            const uniqueUserIds = [...new Set(reviews.map(review => review.postedBy))];
     
-            const userDetails = await Promise.all(
-                uniqueUserIds.map(async (userId) => {
-                    if (!userId || userNames[userId]) return null; // Skip if already fetched
-    
-                    try {
-                        const response = await axios.get(`http://localhost:5000/user/getUserById/${userId}`);
-                        if (response.data.success) {
-                            return { userId, name: response.data.data.name };
-                        }
-                        return null;
-                    } catch (error) {
-                        console.error(`Error fetching user ${userId}:`, error);
-                        return null;
-                    }
-                })
-            );
-    
-            // Reduce to a dictionary of userId -> name
-            const userNameMap = userDetails.reduce((acc, user) => {
-                if (user) acc[user.userId] = user.name;
-                return acc;
-            }, {});
-    
-            setUserNames(prev => ({ ...prev, ...userNameMap }));
-        };
-    
-        if (reviews.length > 0) {
-            fetchUserNames();
-        }
-    }, [reviews]);
-    
-
     const renderStars = (rating) => {
          const star = rating.split(" ")
          let totalStar = ""
@@ -118,7 +83,7 @@ const LawyerDetails = () => {
                 {reviews.length > 0 ? (
                     reviews.map(review => (
                         <div key={review._id} className="review">
-                            <p><strong>Posted by:</strong> {userNames[review.postedBy] || "Fetching..."}</p>
+                            <p><strong>Posted by:</strong> {review.userName || "Anonymous"}</p>
                             <p><strong>Rating:</strong> {renderStars(review.rating)}</p>
                             <p><strong>Comment:</strong> {review.comment}</p>
                             <p><strong>Posted on:</strong> {new Date(review.createdAt).toLocaleDateString()}</p>

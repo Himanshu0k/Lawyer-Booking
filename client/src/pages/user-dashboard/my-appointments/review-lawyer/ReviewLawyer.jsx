@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./ReviewLawyer.css";
@@ -10,16 +10,45 @@ const ReviewLawyer = () => {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  // const [userName, setUserName] = useState(""); // State to store the user's name
+
+  // useEffect(() => {
+  //   const fetchUserName = async () => {
+  //     try {
+  //       const userId = sessionStorage.getItem("token");
+  //       const token = sessionStorage.getItem("token");
+  //       if (userId && token) {
+  //         const response = await axios.get(
+  //           `http://localhost:5000/user/getUserName/${userId}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
+  //         setUserName(response.data.name || "Anonymous");
+  //       } else {
+  //         setUserName("Anonymous");
+  //       }
+  //     } catch (err) {
+  //       console.error("Error fetching user name:", err);
+  //       setUserName("Anonymous");
+  //     }
+  //   };
+
+  //   fetchUserName();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = sessionStorage.getItem("token");
-      const userId = sessionStorage.getItem("userId"); // Retrieve user ID from session storage
-      console.log("LawyeR : " + lawyerId  )
+      // const userId = sessionStorage.getItem("token"); // Retrieve user ID from session storage
+
+      // console.log(`Name: ${userName} User: ${userId} Lawyer: ${lawyerId}`);
       const response = await axios.post(
         `http://localhost:5000/user/appointment/addReview`, // Ensure lawyerId is passed in the URL
-        {lawyerId, userId, rating, comment },
+        { lawyerId, rating, comment },
         {
           headers: {
             Authorization: `Bearer ${token}`,
